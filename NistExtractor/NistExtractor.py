@@ -10,6 +10,8 @@ import fractions
 NIST_LEVEL_SERVER = "http://physics.nist.gov/cgi-bin/ASD/energy1.pl"
 NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
+num_level_limit = 1e6
+unique_nrg_factor = 1e-3
 
 
 #Convert Roman numeral to integer
@@ -51,12 +53,16 @@ def remove_junk(string):
 # Convert energies to indicies
 # Input list of energies to convert, list of reference energies, list of reference indices
 # Returns list of indices
-def energies2indices(nrg,ref_nrg,ref_dex):
+def energies2indices(nrg,lineg,ref_nrg,ref_dex,ref_g):
     ndex = []
-    for x in nrg:
+    for x,lg in zip(nrg,lineg):
+        if(DEBUGMODE):
+            print("Looking for energy = %f and g = %i" % (x,lg))
         match_found = False
-        for refg,refx in zip(ref_nrg,ref_dex):
-            if x == refg:
+        for refnrg,refx,refg in zip(ref_nrg,ref_dex,ref_g):
+            if (DEBUGMODE):
+                print(refg,lg,refnrg,x)
+            if refg == lg and (abs(x-refnrg) <= 2*unique_nrg_factor):
                 ndex.append(refx)
                 match_found = True
                 break
@@ -82,7 +88,7 @@ def getNistData(url,values):
 if len(sys.argv) != 2:
     print("Problem: You must specify the energy level and the transition probability files")
     #sys.exit(99)
-    species = "Ar I" 
+    species = "Ne V" 
 else:
     species = str(sys.argv[1])
 
@@ -93,16 +99,22 @@ base_name = (path_list[len(path_list)-1].split('.'))[0]
 base_name = base_name.replace(' ', '_' )
 base_path = ""
 
+
+print(base_name)
+element_name = base_name.split('_')[0]
+ion_numeral = base_name.split('_')[1]
+ion_int = roman_to_int(ion_numeral)
+
+base_name = element_name + '_' + str(ion_int)
+
 for x in path_list:
     if x != path_list[len(path_list)-1]:
         base_path += x + "/"
 
-#print (path_list)
-#print (base_path)
 
 
-energy_output_name = base_path + base_name + ".txt"
-tp_output_name = base_path + base_name + ".tp.txt"
+energy_output_name = base_path + base_name + ".nrg"
+tp_output_name = base_path + base_name + ".tp"
 
 
 print ("Outputting to %s\n" % (energy_output_name))
@@ -141,7 +153,7 @@ old_config = ""
 old_term = ""
 
 for current_line in nrgData:
-    print(current_line)
+    #print(current_line)
     if not current_line or current_line[0]=='-':
         continue
     
@@ -185,6 +197,21 @@ for current_line in nrgData:
         energy.append(tempenergy)
 
 
+#for nrg in energy:
+    #print (nrg)
+    
+#Keep track of the modified energies
+mod_energies = {}
+for i in range(len(energy)):
+    if i != (len(energy)-1):
+        if( energy[i]/energy[i+1] == 1):
+            energy[i+1] = energy[i+1] + unique_nrg_factor
+            mod_energies[energy[i]] = energy[i+1]
+            #print(energy[i],energy[i+1])
+
+#print (mod_energies)
+#print (len(mod_energies))
+
 #Create index list
 index = range(1,len(energy)+1)
 
@@ -195,6 +222,8 @@ energy_output.write("11 10 14\n")
 
 for ndex,nrg,stwt,cfg,trm in zip(index,energy,statwt,configuration,term):
     energy_output.write("%i\t%.3f\t%i\t%s\t%s\n" % (ndex,nrg,stwt,cfg,trm))
+    if( ndex == num_level_limit):
+        energy_output.write("*******************\n")
 
 
 # Write out End of Data delimiter and NIST Reference including the current date
@@ -224,13 +253,17 @@ line_values = {'spectra' : species,
 
 
 lineData = getNistData(NIST_LINE_SERVER,line_values)
-for ndex in lineData:
-    print(ndex)
+if( DEBUGMODE ):
+    for ndex in lineData:
+        print(ndex)
 
 line_list = []
 eina = []
 nrglo = []
 nrghi = []
+gLo = []
+gHi = []
+ttype = []
 ndexlo = []
 ndexhi = []
 for current_line in lineData:
@@ -251,9 +284,18 @@ for current_line in lineData:
             print ("nrglo = %s\tnrghi = %s\n" % (temp_nrglo,temp_nrghi))
             sys.exit(1)
             
+            
+        tempgLo = (line_list[3].split('-'))[0].strip()
+        tempgHi = (line_list[3].split('-'))[1].strip()
+        #print (tempgLo,tempgHi)
+        
+        gLo.append(float(tempgLo))
+        gHi.append(float(tempgHi))
+        ttype.append(line_list[4].strip())
+       
 #Match energy levels to indices
-ndexlo = energies2indices(nrglo,energy,index)
-ndexhi = energies2indices(nrghi,energy,index)
+ndexlo = energies2indices(nrglo,gLo,energy,index,statwt)
+ndexhi = energies2indices(nrghi,gHi,energy,index,statwt)
 
 tp_output = open(tp_output_name,"w")
 tp_output.write("11 10 14\n")
