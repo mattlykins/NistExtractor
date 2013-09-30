@@ -5,7 +5,7 @@ import subprocess
 from sys import platform
 
 if len(sys.argv) != 2:
-    print("You did not specify an input file. Running for all species.")
+    print("You did not specify an input file. Running for all species.\n")
     input_file_name = "all_species.txt"
     #sys.exit(99)   
 else:
@@ -13,7 +13,7 @@ else:
 
 input_file = open(input_file_name,"r")
 for current_line in input_file:
-        print (current_line)
+        #print (current_line)
         if platform.startswith('win'):
             rcode = subprocess.call(["NistExtractor.py",current_line],shell = True)
         else:
@@ -21,5 +21,5 @@ for current_line in input_file:
             
 
 
-input_file.close();
+input_file.close()
     

@@ -6,12 +6,14 @@ import re
 import sys
 import datetime
 import fractions
+import os
 
 NIST_LEVEL_SERVER = "http://physics.nist.gov/cgi-bin/ASD/energy1.pl"
 NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
 num_level_limit = 1e6
 unique_nrg_factor = 1e-3
+default_species = "Fe X"
 
 
 #Convert Roman numeral to integer
@@ -45,7 +47,7 @@ def remove_junk(string):
     #+x +y etc. indicates that the level has no connection to other levels
     newstring = newstring.replace('+x','').replace('+y','').replace('+z','').replace('+k','')
     #? (and possibly dagger) indicate some uncertianty in the level
-    newstring = newstring.replace('?','')
+    newstring = newstring.replace('?','').replace('&dagger;','')
     # a indicates substantial autoionization broadening
     newstring = newstring.replace('a','')
     return newstring
@@ -73,6 +75,7 @@ def energies2indices(nrg,lineg,ref_nrg,ref_dex,ref_g):
             
     return ndex
 
+# Query the data from the NIST servers
 def getNistData(url,values):
     data = urllib.parse.urlencode(values)
     data = data.encode('utf-8')
@@ -86,38 +89,36 @@ def getNistData(url,values):
 
 
 if len(sys.argv) != 2:
-    print("Problem: You must specify the energy level and the transition probability files")
+    print("Problem: You must specify the energy level and the transition probability files\n")
     #sys.exit(99)
-    species = "Ne V" 
+    species = default_species
 else:
     species = str(sys.argv[1])
 
 
 # Generate output filenames from the inputs
-path_list = species.split('/')
-base_name = (path_list[len(path_list)-1].split('.'))[0]
-base_name = base_name.replace(' ', '_' )
-base_path = ""
+species_name = species.replace(' ', '_' )
 
-
-print(base_name)
-element_name = base_name.split('_')[0]
-ion_numeral = base_name.split('_')[1]
+element_name = species_name.split('_')[0]
+ion_numeral = species_name.split('_')[1]
 ion_int = roman_to_int(ion_numeral)
 
 base_name = element_name + '_' + str(ion_int)
 
-for x in path_list:
-    if x != path_list[len(path_list)-1]:
-        base_path += x + "/"
+base_path = element_name.lower() + "/" + base_name.lower() + "/"
 
+base_name = base_name.lower()
+
+
+if not os.path.exists(base_path):
+    os.makedirs(base_path)
 
 
 energy_output_name = base_path + base_name + ".nrg"
 tp_output_name = base_path + base_name + ".tp"
 
 
-print ("Outputting to %s\n" % (energy_output_name))
+print ("%s data is being saved to %s and %s" % (species,energy_output_name,tp_output_name))
 
 """
 Get the energy level data 
@@ -136,7 +137,7 @@ level_values = {'spectrum' : species,
 try:
     nrgData = getNistData(NIST_LEVEL_SERVER,level_values)
 except:
-    print ("Something")
+    print ("Could not get level data from NIST given these query values:%s" % level_values)
     exit(2)
 
 
@@ -255,8 +256,14 @@ line_values = {'spectra' : species,
           'g_out' : '1',
           'remove_js' : '1' }
 
+try:
+    lineData = getNistData(NIST_LINE_SERVER,line_values)
+except:
+    print ("Could not get line data from NIST given these query values:%s" % line_values)
+    print("This could mean that NIST has no transition data for %s." % species)
+    exit(2)
 
-lineData = getNistData(NIST_LINE_SERVER,line_values)
+
 if( DEBUGMODE ):
     for ndex in lineData:
         print(ndex)
@@ -278,8 +285,12 @@ for current_line in lineData:
         eina.append(float(temp_eina))
         # Energies list item comes out of the first split containing both energies separated
         # by a "-". Split them based on "-" and strip away the whitespaces. 
-        temp_nrglo = (line_list[2].split('-'))[0].strip()
-        temp_nrghi = (line_list[2].split('-'))[1].strip()
+        try:       
+            temp_nrglo = (line_list[2].split('-'))[0].strip()
+            temp_nrghi = (line_list[2].split('-'))[1].strip()
+        except:
+            print("Skipping %s line:%s" % (species,line_list))
+            continue
         try:
             nrglo.append(float(remove_junk(temp_nrglo)))
             nrghi.append(float(remove_junk(temp_nrghi)))
@@ -293,8 +304,8 @@ for current_line in lineData:
         tempgHi = (line_list[3].split('-'))[1].strip()
         #print (tempgLo,tempgHi)
         
-        gLo.append(float(tempgLo))
-        gHi.append(float(tempgHi))
+        gLo.append(float(remove_junk(tempgLo)))
+        gHi.append(float(remove_junk(tempgHi)))
         ttype.append(line_list[4].strip())
        
 #Match energy levels to indices
@@ -304,8 +315,8 @@ ndexhi = energies2indices(nrghi,gHi,energy,index,statwt)
 tp_output = open(tp_output_name,"w")
 tp_output.write("11 10 14\n")
 
-for x,y,z in zip(ndexlo,ndexhi,eina):
-    tp_output.write("A\t%i\t%i\t%.2e\n" % (x,y,z))
+for x,y,z,t in zip(ndexlo,ndexhi,eina,ttype):
+    tp_output.write("A\t%i\t%i\t%.2e\t%s\n" % (x,y,z,t))
     
 tp_output.write("**************\n#Reference:\n#NIST  ")
 tp_output.write(date_today.strftime("%Y-%m-%d"))
