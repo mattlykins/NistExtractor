@@ -133,7 +133,11 @@ level_values = {'spectrum' : species,
           'remove_js' : '1' }
 
 
-nrgData = getNistData(NIST_LEVEL_SERVER,level_values)
+try:
+    nrgData = getNistData(NIST_LEVEL_SERVER,level_values)
+except:
+    print ("Something")
+    exit(2)
 
 
 #energy_output = open(energy_output_name,"w")
