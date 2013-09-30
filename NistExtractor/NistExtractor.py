@@ -13,7 +13,7 @@ NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
 num_level_limit = 1e6
 unique_nrg_factor = 1e-3
-default_species = "Fe X"
+default_species = "Fe_X"
 
 
 #Convert Roman numeral to integer
@@ -88,16 +88,21 @@ def getNistData(url,values):
 
 
 
-if len(sys.argv) != 2:
-    print("Problem: You must specify the energy level and the transition probability files\n")
+
+if len(sys.argv) >= 3:
+    species = str(sys.argv[1])
+    num_level_limit = int(sys.argv[2])
+elif len(sys.argv) == 2:
+    species = str(sys.argv[1])
+else:    
+    print("Running default species of %s.\n" % default_species)
     #sys.exit(99)
     species = default_species
-else:
-    species = str(sys.argv[1])
 
 
 # Generate output filenames from the inputs
-species_name = species.replace(' ', '_' )
+species_name = species
+species = species.replace('_', ' ' )
 
 element_name = species_name.split('_')[0]
 ion_numeral = species_name.split('_')[1]
@@ -227,7 +232,7 @@ energy_output.write("11 10 14\n")
 
 for ndex,nrg,stwt,cfg,trm in zip(index,energy,statwt,configuration,term):
     energy_output.write("%i\t%.3f\t%i\t%s\t%s\n" % (ndex,nrg,stwt,cfg,trm))
-    if( ndex == num_level_limit):
+    if(ndex == num_level_limit):
         energy_output.write("*******************\n")
 
 

@@ -1,406 +1,406 @@
-Li I
-Be I
-Be II
-B I
-B II
-B III
-C I
-C II
-C III
-C IV
-N I
-N II
-N III
-N IV
-N V
-O I
-O II
-O III
-O IV
-O V
-O VI
-F I
-F II
-F III
-F IV
-F V
-F VI
-F VII
-Ne I
-Ne II
-Ne III
-Ne IV
-Ne V
-Ne VI
-Ne VII
-Ne VIII
-Na I
-Na II
-Na III
-Na IV
-Na V
-Na VI
-Na VII
-Na VIII
-Na IX
-Mg I
-Mg II
-Mg III
-Mg IV
-Mg V
-Mg VI
-Mg VII
-Mg VIII
-Mg IX
-Mg X
-Al I
-Al II
-Al III
-Al IV
-Al V
-Al VI
-Al VII
-Al VIII
-Al IX
-Al X
-Al XI
-Si I
-Si II
-Si III
-Si IV
-Si V
-Si VI
-Si VII
-Si VIII
-Si IX
-Si X
-Si XI
-Si XII
-P I
-P II
-P III
-P IV
-P V
-P VI
-P VII
-P VIII
-P IX
-P X
-P XI
-P XII
-P XIII
-S I
-S II
-S III
-S IV
-S V
-S VI
-S VII
-S VIII
-S IX
-S X
-S XI
-S XII
-S XIII
-S XIV
-Cl I
-Cl II
-Cl III
-Cl IV
-Cl V
-Cl VI
-Cl VII
-Cl VIII
-Cl IX
-Cl X
-Cl XI
-Cl XII
-Cl XIII
-Cl XIV
-Cl XV
-Ar I
-Ar II
-Ar III
-Ar IV
-Ar V
-Ar VI
-Ar VII
-Ar VIII
-Ar IX
-Ar X
-Ar XI
-Ar XII
-Ar XIII
-Ar XIV
-Ar XV
-Ar XVI
-K I
-K II
-K III
-K IV
-K V
-K VI
-K VII
-K VIII
-K IX
-K X
-K XI
-K XII
-K XIII
-K XIV
-K XV
-K XVI
-K XVII
-Ca I
-Ca II
-Ca III
-Ca IV
-Ca V
-Ca VI
-Ca VII
-Ca VIII
-Ca IX
-Ca X
-Ca XI
-Ca XII
-Ca XIII
-Ca XIV
-Ca XV
-Ca XVI
-Ca XVII
-Ca XVIII
-Sc I
-Sc II
-Sc III
-Sc IV
-Sc V
-Sc VI
-Sc VII
-Sc VIII
-Sc IX
-Sc X
-Sc XI
-Sc XII
-Sc XIII
-Sc XIV
-Sc XV
-Sc XVI
-Sc XVII
-Sc XVIII
-Sc XIX
-Ti I
-Ti II
-Ti III
-Ti IV
-Ti V
-Ti VI
-Ti VII
-Ti VIII
-Ti IX
-Ti X
-Ti XI
-Ti XII
-Ti XIII
-Ti XIV
-Ti XV
-Ti XVI
-Ti XVII
-Ti XVIII
-Ti XIX
-Ti XX
-V I
-V II
-V III
-V IV
-V V
-V VI
-V VII
-V VIII
-V IX
-V X
-V XI
-V XII
-V XIII
-V XIV
-V XV
-V XVI
-V XVII
-V XVIII
-V XIX
-V XX
-V XXI
-Cr I
-Cr II
-Cr III
-Cr IV
-Cr V
-Cr VI
-Cr VII
-Cr VIII
-Cr IX
-Cr X
-Cr XI
-Cr XII
-Cr XIII
-Cr XIV
-Cr XV
-Cr XVI
-Cr XVII
-Cr XVIII
-Cr XIX
-Cr XX
-Cr XXI
-Cr XXII
-Mn I
-Mn II
-Mn III
-Mn IV
-Mn V
-Mn VI
-Mn VII
-Mn VIII
-Mn IX
-Mn X
-Mn XI
-Mn XII
-Mn XIII
-Mn XIV
-Mn XV
-Mn XVI
-Mn XVII
-Mn XVIII
-Mn XIX
-Mn XX
-Mn XXI
-Mn XXII
-Mn XXIII
-Fe I
-Fe II
-Fe III
-Fe IV
-Fe V
-Fe VI
-Fe VII
-Fe VIII
-Fe IX
-Fe X
-Fe XI
-Fe XII
-Fe XIII
-Fe XIV
-Fe XV
-Fe XVI
-Fe XVII
-Fe XVIII
-Fe XIX
-Fe XX
-Fe XXI
-Fe XXII
-Fe XXIII
-Fe XXIV
-Co I
-Co II
-Co III
-Co IV
-Co V
-Co VI
-Co VII
-Co VIII
-Co IX
-Co X
-Co XI
-Co XII
-Co XIII
-Co XIV
-Co XV
-Co XVI
-Co XVII
-Co XVIII
-Co XIX
-Co XX
-Co XXI
-Co XXII
-Co XXIII
-Co XXIV
-Co XXV
-Ni I
-Ni II
-Ni III
-Ni IV
-Ni V
-Ni VI
-Ni VII
-Ni VIII
-Ni IX
-Ni X
-Ni XI
-Ni XII
-Ni XIII
-Ni XIV
-Ni XV
-Ni XVI
-Ni XVII
-Ni XVIII
-Ni XIX
-Ni XX
-Ni XXI
-Ni XXII
-Ni XXIII
-Ni XXIV
-Ni XXV
-Ni XXVI
-Cu I
-Cu II
-Cu III
-Cu IV
-Cu V
-Cu VI
-Cu VII
-Cu VIII
-Cu IX
-Cu X
-Cu XI
-Cu XII
-Cu XIII
-Cu XIV
-Cu XV
-Cu XVI
-Cu XVII
-Cu XVIII
-Cu XIX
-Cu XX
-Cu XXI
-Cu XXII
-Cu XXIII
-Cu XXIV
-Cu XXV
-Cu XXVI
-Cu XXVII
-Zn I
-Zn II
-Zn III
-Zn IV
-Zn V
-Zn VI
-Zn VII
-Zn VIII
-Zn IX
-Zn X
-Zn XI
-Zn XII
-Zn XIII
-Zn XIV
-Zn XV
-Zn XVI
-Zn XVII
-Zn XVIII
-Zn XIX
-Zn XX
-Zn XXI
-Zn XXII
-Zn XXIII
-Zn XXIV
-Zn XXV
-Zn XXVI
-Zn XXVII
-Zn XXVIII
+Li_I
+Be_I
+Be_II
+B_I
+B_II
+B_III
+C_I
+C_II
+C_III
+C_IV
+N_I
+N_II
+N_III
+N_IV
+N_V
+O_I
+O_II
+O_III
+O_IV
+O_V
+O_VI
+F_I
+F_II
+F_III
+F_IV
+F_V
+F_VI
+F_VII
+Ne_I
+Ne_II
+Ne_III
+Ne_IV
+Ne_V
+Ne_VI
+Ne_VII
+Ne_VIII
+Na_I
+Na_II
+Na_III
+Na_IV
+Na_V
+Na_VI
+Na_VII
+Na_VIII
+Na_IX
+Mg_I
+Mg_II
+Mg_III
+Mg_IV
+Mg_V
+Mg_VI
+Mg_VII
+Mg_VIII
+Mg_IX
+Mg_X
+Al_I
+Al_II
+Al_III
+Al_IV
+Al_V
+Al_VI
+Al_VII
+Al_VIII
+Al_IX
+Al_X
+Al_XI
+Si_I
+Si_II
+Si_III
+Si_IV
+Si_V
+Si_VI
+Si_VII
+Si_VIII
+Si_IX
+Si_X
+Si_XI
+Si_XII
+P_I
+P_II
+P_III
+P_IV
+P_V
+P_VI
+P_VII
+P_VIII
+P_IX
+P_X
+P_XI
+P_XII
+P_XIII
+S_I
+S_II
+S_III
+S_IV
+S_V
+S_VI
+S_VII
+S_VIII
+S_IX
+S_X
+S_XI
+S_XII
+S_XIII
+S_XIV
+Cl_I
+Cl_II
+Cl_III
+Cl_IV
+Cl_V
+Cl_VI
+Cl_VII
+Cl_VIII
+Cl_IX
+Cl_X
+Cl_XI
+Cl_XII
+Cl_XIII
+Cl_XIV
+Cl_XV
+Ar_I
+Ar_II
+Ar_III
+Ar_IV
+Ar_V
+Ar_VI
+Ar_VII
+Ar_VIII
+Ar_IX
+Ar_X
+Ar_XI
+Ar_XII
+Ar_XIII
+Ar_XIV
+Ar_XV
+Ar_XVI
+K_I
+K_II
+K_III
+K_IV
+K_V
+K_VI
+K_VII
+K_VIII
+K_IX
+K_X
+K_XI
+K_XII
+K_XIII
+K_XIV
+K_XV
+K_XVI
+K_XVII
+Ca_I
+Ca_II
+Ca_III
+Ca_IV
+Ca_V
+Ca_VI
+Ca_VII
+Ca_VIII
+Ca_IX
+Ca_X
+Ca_XI
+Ca_XII
+Ca_XIII
+Ca_XIV
+Ca_XV
+Ca_XVI
+Ca_XVII
+Ca_XVIII
+Sc_I
+Sc_II
+Sc_III
+Sc_IV
+Sc_V
+Sc_VI
+Sc_VII
+Sc_VIII
+Sc_IX
+Sc_X
+Sc_XI
+Sc_XII
+Sc_XIII
+Sc_XIV
+Sc_XV
+Sc_XVI
+Sc_XVII
+Sc_XVIII
+Sc_XIX
+Ti_I
+Ti_II
+Ti_III
+Ti_IV
+Ti_V
+Ti_VI
+Ti_VII
+Ti_VIII
+Ti_IX
+Ti_X
+Ti_XI
+Ti_XII
+Ti_XIII
+Ti_XIV
+Ti_XV
+Ti_XVI
+Ti_XVII
+Ti_XVIII
+Ti_XIX
+Ti_XX
+V_I
+V_II
+V_III
+V_IV
+V_V
+V_VI
+V_VII
+V_VIII
+V_IX
+V_X
+V_XI
+V_XII
+V_XIII
+V_XIV
+V_XV
+V_XVI
+V_XVII
+V_XVIII
+V_XIX
+V_XX
+V_XXI
+Cr_I
+Cr_II
+Cr_III
+Cr_IV
+Cr_V
+Cr_VI
+Cr_VII
+Cr_VIII
+Cr_IX
+Cr_X
+Cr_XI
+Cr_XII
+Cr_XIII
+Cr_XIV
+Cr_XV
+Cr_XVI
+Cr_XVII
+Cr_XVIII
+Cr_XIX
+Cr_XX
+Cr_XXI
+Cr_XXII
+Mn_I
+Mn_II
+Mn_III
+Mn_IV
+Mn_V
+Mn_VI
+Mn_VII
+Mn_VIII
+Mn_IX
+Mn_X
+Mn_XI
+Mn_XII
+Mn_XIII
+Mn_XIV
+Mn_XV
+Mn_XVI
+Mn_XVII
+Mn_XVIII
+Mn_XIX
+Mn_XX
+Mn_XXI
+Mn_XXII
+Mn_XXIII
+Fe_I
+Fe_II
+Fe_III
+Fe_IV
+Fe_V
+Fe_VI
+Fe_VII
+Fe_VIII
+Fe_IX
+Fe_X
+Fe_XI
+Fe_XII
+Fe_XIII
+Fe_XIV
+Fe_XV
+Fe_XVI
+Fe_XVII
+Fe_XVIII
+Fe_XIX
+Fe_XX
+Fe_XXI
+Fe_XXII
+Fe_XXIII
+Fe_XXIV
+Co_I
+Co_II
+Co_III
+Co_IV
+Co_V
+Co_VI
+Co_VII
+Co_VIII
+Co_IX
+Co_X
+Co_XI
+Co_XII
+Co_XIII
+Co_XIV
+Co_XV
+Co_XVI
+Co_XVII
+Co_XVIII
+Co_XIX
+Co_XX
+Co_XXI
+Co_XXII
+Co_XXIII
+Co_XXIV
+Co_XXV
+Ni_I
+Ni_II
+Ni_III
+Ni_IV
+Ni_V
+Ni_VI
+Ni_VII
+Ni_VIII
+Ni_IX
+Ni_X
+Ni_XI
+Ni_XII
+Ni_XIII
+Ni_XIV
+Ni_XV
+Ni_XVI
+Ni_XVII
+Ni_XVIII
+Ni_XIX
+Ni_XX
+Ni_XXI
+Ni_XXII
+Ni_XXIII
+Ni_XXIV
+Ni_XXV
+Ni_XXVI
+Cu_I
+Cu_II
+Cu_III
+Cu_IV
+Cu_V
+Cu_VI
+Cu_VII
+Cu_VIII
+Cu_IX
+Cu_X
+Cu_XI
+Cu_XII
+Cu_XIII
+Cu_XIV
+Cu_XV
+Cu_XVI
+Cu_XVII
+Cu_XVIII
+Cu_XIX
+Cu_XX
+Cu_XXI
+Cu_XXII
+Cu_XXIII
+Cu_XXIV
+Cu_XXV
+Cu_XXVI
+Cu_XXVII
+Zn_I
+Zn_II
+Zn_III
+Zn_IV
+Zn_V
+Zn_VI
+Zn_VII
+Zn_VIII
+Zn_IX
+Zn_X
+Zn_XI
+Zn_XII
+Zn_XIII
+Zn_XIV
+Zn_XV
+Zn_XVI
+Zn_XVII
+Zn_XVIII
+Zn_XIX
+Zn_XX
+Zn_XXI
+Zn_XXII
+Zn_XXIII
+Zn_XXIV
+Zn_XXV
+Zn_XXVI
+Zn_XXVII
+Zn_XXVIII
