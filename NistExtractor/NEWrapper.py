@@ -22,7 +22,7 @@ for current_line in input_file:
             num_level_limit = tokens[1]
         elif len(tokens) == 1:
             species = tokens[0]
-            num_level_limit = 1e6
+            num_level_limit = 1000
         else:
             print("File, %s, is not properly formatted", input_file_name)
             sys.exit(99)

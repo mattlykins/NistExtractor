@@ -11,7 +11,7 @@ import os
 NIST_LEVEL_SERVER = "http://physics.nist.gov/cgi-bin/ASD/energy1.pl"
 NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
-num_level_limit = 1e6
+num_level_limit = 1000
 unique_nrg_factor = 1e-3
 default_species = "Fe_X"
 
@@ -91,7 +91,7 @@ def getNistData(url,values):
 
 if len(sys.argv) >= 3:
     species = str(sys.argv[1])
-    num_level_limit = int(sys.argv[2])
+    num_level_limit = (sys.argv[2])
 elif len(sys.argv) == 2:
     species = str(sys.argv[1])
 else:    
@@ -232,7 +232,7 @@ energy_output.write("11 10 14\n")
 
 for ndex,nrg,stwt,cfg,trm in zip(index,energy,statwt,configuration,term):
     energy_output.write("%i\t%.3f\t%i\t%s\t%s\n" % (ndex,nrg,stwt,cfg,trm))
-    if(ndex == num_level_limit):
+    if(ndex == int(num_level_limit)):
         energy_output.write("*******************\n")
 
 
