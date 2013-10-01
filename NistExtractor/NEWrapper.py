@@ -27,7 +27,7 @@ for current_line in input_file:
             print("File, %s, is not properly formatted", input_file_name)
             sys.exit(99)
         
-        print("Running NIST Extractor on %s for %s levels" % (species,str(num_level_limit)))
+        print("\nRunning NIST Extractor on %s for %s levels" % (species,str(num_level_limit)))
         if platform.startswith('win'):
             rcode = subprocess.call(["NistExtractor.py",species,str(num_level_limit)],shell = True)
         else:
@@ -36,4 +36,6 @@ for current_line in input_file:
 
 
 input_file.close()
+
+print("\nNEWrapper finished!")
     
