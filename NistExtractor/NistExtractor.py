@@ -13,7 +13,7 @@ NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
 num_level_limit = 1000
 unique_nrg_factor = 1e-3
-default_species = "Fe_X"
+default_species = "Fe_IX"
 
 
 #Convert Roman numeral to integer
@@ -239,7 +239,7 @@ for ndex,nrg,stwt,cfg,trm in zip(index,energy,statwt,configuration,term):
 # Write out End of Data delimiter and NIST Reference including the current date
 energy_output.write("**************\n#Reference:\n#NIST  ")
 date_today = datetime.date.today()
-energy_output.write(date_today.strftime("%Y-%m-%d"))
+energy_output.write(date_today.strftime("%Y-%m-%d\n"))
 
 energy_output.close()  
     
@@ -324,7 +324,7 @@ for x,y,z,t in zip(ndexlo,ndexhi,eina,ttype):
     tp_output.write("A\t%i\t%i\t%.2e\t%s\n" % (x,y,z,t))
     
 tp_output.write("**************\n#Reference:\n#NIST  ")
-tp_output.write(date_today.strftime("%Y-%m-%d"))
+tp_output.write(date_today.strftime("%Y-%m-%d\n"))
     
     
 tp_output.close() 
