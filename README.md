@@ -14,6 +14,7 @@ NistExtractor.py "Fe IX" 30
 
 NEWrapper.py allows for NistExtractor to be run on multiple species.
 The required parameter is a file listing the desired species and optionally the level limit.
+
 See "all_species.txt" and "cloudy_species.txt" as examples of how to format the input file.
 
 
