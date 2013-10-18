@@ -7,6 +7,7 @@ The second and optional parameter allows the user to specify an early cutoff to 
 
 
 Example: Fe IX  with 30 levels
+
 NistExtractor.py "Fe IX" 30
 
 
