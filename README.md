@@ -8,8 +8,9 @@ The second and optional parameter allows the user to specify an early cutoff to 
 
 Example: Fe IX  with 30 levels
 
+```
 NistExtractor.py "Fe IX" 30
-
+```
 
 NEWrapper.py allows for NistExtractor to be run on multiple species.
 The required parameter is a file listing the desired species and optionally the level limit.
