@@ -14,6 +14,7 @@ DEBUGMODE = False
 num_level_limit = 1000
 unique_nrg_factor = 1e-3
 default_species = "Fe_IX"
+DEFAULTSPECIESON = False
 
 
 #Convert Roman numeral to integer
@@ -94,10 +95,14 @@ if len(sys.argv) >= 3:
     num_level_limit = (sys.argv[2])
 elif len(sys.argv) == 2:
     species = str(sys.argv[1])
-else:    
-    print("Running default species of %s.\n" % default_species)
-    #sys.exit(99)
-    species = default_species
+else: 
+    if DEFAULTSPECIESON:
+        print("Running default species of %s.\n" % default_species)        
+        species = default_species
+    else:
+        print("You must provide an elemental species (ex. Fe_IX).")
+        sys.exit(99)
+        
 
 
 # Generate output filenames from the inputs
