@@ -12,11 +12,37 @@ NIST_LEVEL_SERVER = "http://physics.nist.gov/cgi-bin/ASD/energy1.pl"
 NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
 num_level_limit = 1000
-unique_nrg_factor = 1e-3
+unique_nrg_factor = 1.0e-3
+decimalPlaces = 3
 default_species = "Fe_IX"
 DEFAULTSPECIESON = False
 
-
+#Test whether floats are equal to certain number of decimal places
+def equalFloats(a,b,places):
+    if( a == b ): return True
+    if( type(a) != float or type(b) != float):
+        print ("PROBLEM: One or both of these values are not of the type float:%f\t%f" % a,b)
+        return False
+    
+    stringA = str(a)
+    stringB = str(b)
+    
+    if( len(stringA) != len(stringB)):
+        while len(stringA) < len(stringB):
+            stringA = stringA + '0'
+            
+        while len(stringB) < len(stringA):
+            stringB = stringB + '0'
+        
+    #print(stringA,stringB)
+    ndexDecimalA = stringA.find('.')
+    ndexDecimalB = stringB.find('.')
+    #print(ndexDecimalA,ndexDecimalB)
+    subStringA = stringA[:ndexDecimalA + places + 1]
+    subStringB = stringB[:ndexDecimalB + places + 1]
+    #print(subStringA,subStringB)
+    
+    return subStringA==subStringB
 #Convert Roman numeral to integer
 def roman_to_int(n):
     numeral_map = zip(
@@ -89,7 +115,9 @@ def getNistData(url,values):
 
 
 
-
+#***********************************************************#
+# Main Program Start
+#***********************************************************#
 if len(sys.argv) >= 3:
     species = str(sys.argv[1])
     num_level_limit = (sys.argv[2])
@@ -102,8 +130,6 @@ else:
     else:
         print("You must provide an elemental species (ex. Fe_IX).")
         sys.exit(99)
-        
-
 
 # Generate output filenames from the inputs
 species_name = species
@@ -218,11 +244,25 @@ for current_line in nrgData:
 #Keep track of the modified energies
 mod_energies = {}
 for i in range(len(energy)):
-    if i != (len(energy)-1):
-        if( energy[i]/energy[i+1] == 1):
-            energy[i+1] = energy[i+1] + unique_nrg_factor
-            mod_energies[energy[i]] = energy[i+1]
-            #print(energy[i],energy[i+1])
+    if i != (len(energy)-1 ):
+        if( equalFloats(energy[i],energy[i+1],decimalPlaces)):
+            j = i + 1          
+            
+            while( equalFloats(energy[i],energy[j],decimalPlaces )):
+                energy[j] = energy[i] + (j-i)*unique_nrg_factor
+                mod_energies[energy[i]] = energy[j]
+                print("REGULAR",energy[i],energy[j])
+                j = j + 1
+                if( j > len(energy)-1):
+                    break
+             
+                
+            
+            
+           # energy[i+1] = energy[i] + unique_nrg_factor
+            
+            
+            
 
 #print (mod_energies)
 #print (len(mod_energies))
