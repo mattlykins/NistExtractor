@@ -12,7 +12,7 @@ NIST_LEVEL_SERVER = "http://physics.nist.gov/cgi-bin/ASD/energy1.pl"
 NIST_LINE_SERVER = "http://physics.nist.gov/cgi-bin/ASD/lines1.pl"
 DEBUGMODE = False
 num_level_limit = 1000
-unique_nrg_factor = 1.0e-3
+unique_nrg_factor = 0.001
 decimalPlaces = 3
 default_species = "Fe_IX"
 DEFAULTSPECIESON = False
@@ -91,7 +91,7 @@ def energies2indices(nrg,lineg,ref_nrg,ref_dex,ref_g):
         for refnrg,refx,refg in zip(ref_nrg,ref_dex,ref_g):
             if (DEBUGMODE):
                 print(refg,lg,refnrg,x)
-            if refg == lg and (abs(x-refnrg) <= 2*unique_nrg_factor):
+            if refg == lg and (abs(x-refnrg) <= 5*unique_nrg_factor):
                 ndex.append(refx)
                 match_found = True
                 break
@@ -235,6 +235,7 @@ for current_line in nrgData:
         
         statwt.append(2*float(tempJ) + 1)        
         tempenergy = float(tempenergy)
+        tempenergy = round(tempenergy,3)
         energy.append(tempenergy)
 
 
@@ -249,19 +250,12 @@ for i in range(len(energy)):
             j = i + 1          
             
             while( equalFloats(energy[i],energy[j],decimalPlaces )):
-                energy[j] = energy[i] + (j-i)*unique_nrg_factor
+                energy[j] = round(energy[i] + (j-i)*unique_nrg_factor,decimalPlaces)
                 mod_energies[energy[i]] = energy[j]
-                print("REGULAR",energy[i],energy[j])
+                #print("REGULAR",energy[i],energy[j])
                 j = j + 1
                 if( j > len(energy)-1):
-                    break
-             
-                
-            
-            
-           # energy[i+1] = energy[i] + unique_nrg_factor
-            
-            
+                    break           
             
 
 #print (mod_energies)
