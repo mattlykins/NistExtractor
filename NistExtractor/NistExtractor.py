@@ -14,7 +14,7 @@ DEBUGMODE = False
 num_level_limit = 1000
 unique_nrg_factor = 0.001
 decimalPlaces = 3
-default_species = "Fe_IX"
+default_species = "O_I"
 DEFAULTSPECIESON = False
 
 #Test whether floats are equal to certain number of decimal places
@@ -91,7 +91,7 @@ def energies2indices(nrg,lineg,ref_nrg,ref_dex,ref_g):
         for refnrg,refx,refg in zip(ref_nrg,ref_dex,ref_g):
             if (DEBUGMODE):
                 print(refg,lg,refnrg,x)
-            if refg == lg and (abs(x-refnrg) <= 5*unique_nrg_factor):
+            if refg == lg and (abs(x-refnrg) <= 5.1*unique_nrg_factor):
                 ndex.append(refx)
                 match_found = True
                 break
