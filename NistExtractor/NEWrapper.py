@@ -4,9 +4,10 @@ import sys
 import subprocess
 from sys import platform
 
+
 if len(sys.argv) != 2:
     print("You did not specify an input file. Running for the default Cloudy.\n")
-    input_file_name = "cloudy_species.txt"    
+    input_file_name = "all_species.txt"    
 else:
     input_file_name = str(sys.argv[1])
     

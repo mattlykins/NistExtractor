@@ -152,6 +152,7 @@ if not os.path.exists(base_path):
 
 energy_output_name = base_path + base_name + ".nrg"
 tp_output_name = base_path + base_name + ".tp"
+coll_output_name = base_path + base_name + ".coll"
 
 
 print ("%s data is being saved to %s and %s" % (species,energy_output_name,tp_output_name))
@@ -366,6 +367,13 @@ tp_output.write("**************\n#Reference:\n#NIST  ")
 tp_output.write(date_today.strftime("%Y-%m-%d\n"))
     
     
-tp_output.close() 
+tp_output.close()
+
+if not os.path.exists(coll_output_name):
+    print ("Collision data file created: %s" % (coll_output_name))
+    coll_output = open(coll_output_name,"w")
+    coll_output.write("11 10 14\n")
+    coll_output.write("**************\n")
+    coll_output.close()
 
 sys.exit(0)
